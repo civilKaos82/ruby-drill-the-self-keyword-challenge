@@ -43,12 +43,45 @@ class Person
   # Rest of class omitted ...
 end
 ```
+*Figure 3*. Using `self` as the default receiver of method calls.
 
 Remember that `self` is the default receiver of method calls.  If we call a method without specifying an object on which we're calling the method, the message is sent to `self`.  To demonstrate this, refactor the `#full_name` method to match Figure 3—we're removing the explicit receiver from our method calls.  The method will behave just as it did before.
 
 If we want to explore these methods more, we can open IRB and `load 'person.rb'`  Then we can create some instances of the class `Person` and call these methods on them.
 
 
+### Release 1: When Defining a Class
+When we define a class, that class is itself an object.  Like any other object, a `Class` object is capable of having messages sent to it.  We regularly send them the message `:new`.
+
+Sometimes we want our classes to perform additional behaviors.  To accomplish this, we can define methods on a class itself.  We call these *class methods*.  We have a class object `Dog` that has a class method defined on it: the method `.create_multiple` creates multiple dogs based on an array of data.
+
+```ruby
+class Dog
+  def Dog.create_multiple(data_for_multiple_dogs)
+    data_for_multiple_dogs.map { |data_for_one_dog| Dog.new(data_for_one_dog) }
+  end
+  
+  # Rest of class omitted ...
+end
+```
+*Figure 4*.  Defining a class method within the body of the class definition.
+
+What does this have to do with the keyword `self`?  To set up for that discussion, let's do a little refactoring.  When we define a class method, we typically do so within the body of the class definition; this keeps our code well organized.  Let's refactor our `Dog` class, so that the class method `.create_multiple` is defined within the class definition (see Figure 4).  Our tests for the `Dog` class should continue to pass.
+
+Now that we're defining our class method within the body of the class definition, we can discuss `self`.  When Ruby encounters a class definition, the code in the class definition is executed, and while it's executed the `self` keyword will point to the `Class` object being defined.
+
+```ruby
+class Dog
+  def self.create_multiple(data_for_multiple_dogs)
+    data_for_multiple_dogs.map { |data_for_one_dog| Dog.new(data_for_one_dog) }
+  end
+  
+  # Rest of class omitted ...
+end
+```
+*Figure 5*.  Defining a class method within the body of the class definition, using the keyword `self`.
+
+To demonstrate this, let's perform an additional refactor.  Rather than defining the class method `.create_multiple` explicitly on the object `Dog`, let's define it on `self` (see Figure 5).  As with our previous refactor, our tests should continue to pass.  After all, in this example, `self` is pointing to the object `Dog`.
 
 
 
@@ -57,8 +90,7 @@ If we want to explore these methods more, we can open IRB and `load 'person.rb'`
 
 
 
-
-### Release 0: The Global Context
+### Release 2: The Global Context
 There is a global context in which our Ruby programs execute, and within this context exists a special instance of the class `Object` called `main`.  In the global context, `self` points to main.
 
 ```bash
