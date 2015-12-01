@@ -1,21 +1,81 @@
-# Ruby Drill The Self Keyword
+# Ruby Drill: The Self Keyword
 
-##Learning Competencies
+## Summary
+There is a keyword in Ruby called `self`. We're going to explore `self` in this challenge.  It can be difficult to understand the `self` keyword, but our understanding of it will grow as we become more practiced rubyists.
 
-* Use instance variables and accessor methods effectively
-* Work with objects in Ruby
-* Using self to access the current context
+```ruby
+name = "Malachi"
+# => "Malachi"
+name.upcase
+# => "MALACHI"
+```
+*Figure 1*. Calling a method on an specific object, referenced through a variable.
 
-##Summary
+We're used to defining variables in our programs.  When we assign an object to a variable, we can later reference the object through the variable (see Figure 1).  The `self` keyword works similarly to a variable in that it also references an object.  However, the object to which `self` points changes at different points in our program.
 
- There is an enigmatic keyword in Ruby called `self`. You can use this keyword in order to access the context that the program is currently working inside of.  In this exercise you will explore the three main contexts where `self` is used, in common code you will likely only use the last two.
+To which object does `self` point?  Remember, when we call a method, we're sending a message to an object.  In Figure 1, when we call `name.upcase`, we're sending the message `:upcase` to a specific object, a string that we're referencing through the variable `name`.
+
+```ruby
+object_id
+# => 2155958780
+```
+*Figure 2*.  Calling the `:object_id` method without explicitly stating which object should receive the message.
+
+However, we sometimes call a method without calling it directly on an object.  In Figure 2, we call the `:object_id` method, but we don't explicitly state to which object we're sending the message.  So, to which object is this message sent?  The message is sent to the object to which `self` points.  In other words, when we call a method, `self` is the default receiver.
+
+In the *Releases* section we'll explore to which object `self` refers at different contexts of our program, and how we can utilize it.
 
 
-##Releases
+## Releases
+### Release 0: Within Method Definitions
+When we define methods, we're writing code that will be executed at a later time when the method is called.  In addition, the method executes in a new context, or scope.  While the code in the method body is executing in this new scope, `self` refers to the receiver of the method call (i.e., the method on which the object was called).
 
-###Release 0 : Understand Self
+We have a class `Person` with instance methods that demonstrate this.  First, there is the method `#return_self`, which simply returns the object to which `self` points when the method executes.  The test suite demonstrates that this method returns the exact same object on which the method was called.
 
-#### Global Context
+Second, we have the method `#full_name`, which combines and returns the person's first and last names.  We can see that the method calls the `#first_name` and `#last_name` attribute reader methods on `self`, which is the object on which the method is called.
+
+```ruby
+class Person
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
+  # Rest of class omitted ...
+end
+```
+
+Remember that `self` is the default receiver of method calls.  If we call a method without specifying an object on which we're calling the method, the message is sent to `self`.  To demonstrate this, refactor the `#full_name` method to match Figure 3—we're removing the explicit receiver from our method calls.  The method will behave just as it did before.
+
+If we want to explore these methods more, we can open IRB and `load 'person.rb'`  Then we can create some instances of the class `Person` and call these methods on them.
+
+
+
+
+
+
+
+
+
+
+
+### Release 0: The Global Context
+There is a global context in which our Ruby programs execute, and within this context exists a special instance of the class `Object` called `main`.  In the global context, `self` points to main.
+
+```bash
+2.1.0 :001 > self
+# => main 
+2.1.0 :002 > def return_receiver_of_method_call
+2.1.0 :003?>   return self
+2.1.0 :004?>   end
+# => :return_receiver_of_method_call 
+2.1.0 :005 > return_receiver_of_method_call
+# => main 
+```
+*Figure 3*.  Exploring the global-context `self` in IRB.
+
+We can explore `self` in the global context by opening IRB.  In Figure 3, we're in IRB.  We first access `self`, which returns `main`, demonstrating that in the global context.
+
+
 
 There is the global or "main" context, which you can see by executing `self.to_s` or `self.public_methods` in IRB.
 
@@ -82,3 +142,6 @@ Implement `#hypot` and then write a test for it. When the test passes, comment o
 After reading this challenge and practicing with `self` you should have a solid understanding of it. Write up an explanation of self in your own words, and submit it as comments at in the `self.rb` file.  Make sure even your deaf grandma would understand it!
 
 ##Resources
+
+[self article]: http://yugui.jp/articles/846
+
