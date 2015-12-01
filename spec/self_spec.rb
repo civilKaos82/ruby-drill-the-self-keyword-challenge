@@ -1,4 +1,4 @@
-require_relative 'self'
+require_relative '../self'
 
 describe Person do
   describe '#example_instance_method' do
