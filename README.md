@@ -117,6 +117,9 @@ After reading and working through *Releases 0 - 3* and working with `self`, we s
 
 
 ## Conclusion
+We'll most commonly use `self` to define class methods when defining a new class—or defining methods on a module.  Going back to *Release 1* and *Release 2*, it's important to understand that when the code in a class/module definition is executed, the value of `self` is that new class or module that we're defining.
+
+We'll also want to be sure that we understand that `self` is the default receiver of method calls.  When we define methods we often call other methods within the method definition without explicitly naming a receiver.  We should understand that when such method are executed, method calls without an explicit receiver are sent to the object to which `self` refers, the object on which we called the original method.
 
 
 [self article]: http://yugui.jp/articles/846
