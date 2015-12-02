@@ -99,40 +99,18 @@ We're going to define our own module `AreaCalculator` which will calculate the a
 
 We define modules in the same way that we define classes—in fact, a class is a specific type of module.  Only, instead of beginning with `class`, we begin with `module`.  As with defining a class, when we define a module we're creating an object on which we can define methods (i.e., add behaviors).
 
-`self` is treated the same way in the body of a module definition as it is in a class definition.  `self` points to the new module being defined.  So, as we're defining a module, we can utilize `self` to add methods to the module, just as we did in adding the method `.create_multiple` to our `Dog` class in Release 1.
+`self` is treated the same way in the body of a module definition as it is in a class definition.  `self` points to the new module being defined.  So, as we're defining a module, we can utilize `self` to add methods to the module, just as we did in adding the method `.create_multiple` to our `Dog` class in *Release 1*.
 
-Let's add some behaviors to the `AreaCalculator` module.  Again, the behaviors we're looking for have been described in the test suite:  calculating the area of rectangles, squares, and triangles.
-
-
-
-
-
-
-
+Let's add some behaviors to the module object `AreaCalculator`.  Again, the behaviors we're looking for have been described in the test suite:  calculating the area of rectangles, squares, and triangles.
 
 
 ### Release 3: The Global Context
-There is a global context in which our Ruby programs execute, and within this context exists a special instance of the class `Object` called `main`.  In the global context, `self` points to main.
+Take a look at the file `runner.rb`.  In the file, we define a method `#return_self` that returns the value of `self`, and we know from *Release 0* that when the method is executed `self` will reference the object on which the method is called.  After defining the method, we call the `#puts` method, passing in an interpolated string in which we call our `#return_self` method.
 
-```bash
-2.1.0 :001 > self
-# => main 
-2.1.0 :002 > def return_receiver_of_method_call
-2.1.0 :003?>   return self
-2.1.0 :004?>   end
-# => :return_receiver_of_method_call 
-2.1.0 :005 > return_receiver_of_method_call
-# => main 
-```
-*Figure 3*.  Exploring the global-context `self` in IRB.
+When we call these methods, we don't specify a receiver, but the messages need to be sent to some object. With no explicit receiver, they'll go to the default receiver, which we know is `self`.  Which object receives these method calls?  Run the runner file to find out.
 
-We can explore `self` in the global context by opening IRB.  In Figure 3, we're in IRB.  We first access `self`, which returns `main`, demonstrating that in the global context.
+There is a global context in which our Ruby programs execute, and within this context exists a special instance of the class `Object` called `main`.  And, in the global context, `self` points to `main`.  We won't commonly utilize `self` in the global context, but it's good to be aware of what's happening when we call methods in the global context without specifying a receiver.
 
-
-
-There is the global or "main" context, which you can see by executing `self.to_s` or `self.public_methods` in IRB.
-
-Try this now.  What are some of the methods available?
 
 #### Class Context
 
