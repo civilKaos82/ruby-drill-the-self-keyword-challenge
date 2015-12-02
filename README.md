@@ -84,13 +84,34 @@ end
 To demonstrate this, let's perform an additional refactor.  Rather than defining the class method `.create_multiple` explicitly on the object `Dog`, let's define it on `self` (see Figure 5).  As with our previous refactor, our tests should continue to pass.  After all, in this example, `self` is pointing to the object `Dog`.
 
 
+### Release 2:  When Defining a Module
+```ruby
+Math.sqrt(4)
+# => 2.0
+Math.hypot(3, 4)
+# => 5.0 
+```  
+*Figure 6*. Calculating using the `Math` module.
+
+Modules in Ruby are used in different ways.  One way to utilize a module is as an object that performs a set of related behaviors.  For example, Ruby provides a `Math` module.  In Figure 6, we can see that we can call methods directly on the module itself.  We can ask the `Math` module to calculate the square root of a number or the length of a triangle's hypotenuse given the lengths of its legs.
+
+We're going to define our own module `AreaCalculator` which will calculate the areas of shapes.  Tests are written for the module's behaviors; we need to define the methods.  If our geometry is rusty, we can see how to calculate each shape's area in the tests; this release isn't about geometry, rather it's about using `self` within the body of a module definition.
+
+We define modules in the same way that we define classes—in fact, a class is a specific type of module.  Only, instead of beginning with `class`, we begin with `module`.  As with defining a class, when we define a module we're creating an object on which we can define methods (i.e., add behaviors).
+
+`self` is treated the same way in the body of a module definition as it is in a class definition.  `self` points to the new module being defined.  So, as we're defining a module, we can utilize `self` to add methods to the module, just as we did in adding the method `.create_multiple` to our `Dog` class in Release 1.
+
+Let's add some behaviors to the `AreaCalculator` module.  Again, the behaviors we're looking for have been described in the test suite:  calculating the area of rectangles, squares, and triangles.
 
 
 
 
 
 
-### Release 2: The Global Context
+
+
+
+### Release 3: The Global Context
 There is a global context in which our Ruby programs execute, and within this context exists a special instance of the class `Object` called `main`.  In the global context, `self` points to main.
 
 ```bash
