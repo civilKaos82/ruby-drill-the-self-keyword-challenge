@@ -113,10 +113,11 @@ There is a global context in which our Ruby programs execute, and within this co
 
 
 ### Release 4: `self` Reflection
-After reading and working through *Releases 0 - 3* and practicing with `self`, we should have some understanding of it.  Write up an explanation of `self` in the file `self_reflection.md`.  As much as possible, put our description in our `self` in our own words, such that a non-technical person could understand.
+After reading and working through *Releases 0 - 3* and working with `self`, we should have some understanding of it.  Write up an explanation of `self` in the file `self_reflection.md`.  As much as possible, put our description in our `self` in our own words, such that a non-technical person could understand.
 
 
-##Resources
+## Conclusion
+
 
 [self article]: http://yugui.jp/articles/846
 
