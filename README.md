@@ -112,9 +112,9 @@ When we call these methods, we don't specify a receiver, but the messages need t
 There is a global context in which our Ruby programs execute, and within this context exists a special instance of the class `Object` called `main`.  And, in the global context, `self` points to `main`.  We won't commonly utilize `self` in the global context, but it's good to be aware of what's happening when we call methods in the global context without specifying a receiver.
 
 
-### Release 1: Write it up
+### Release 4: `self` Reflection
+After reading and working through *Releases 0 - 3* and practicing with `self`, we should have some understanding of it.  Write up an explanation of `self` in the file `self_reflection.md`.  As much as possible, put our description in our `self` in our own words, such that a non-technical person could understand.
 
-After reading this challenge and practicing with `self` you should have a solid understanding of it. Write up an explanation of self in your own words, and submit it as comments at in the `self.rb` file.  Make sure even your deaf grandma would understand it!
 
 ##Resources
 
