@@ -45,9 +45,9 @@ end
 ```
 *Figure 3*. Using `self` as the default receiver of method calls.
 
-Remember that `self` is the default receiver of method calls.  If we call a method without specifying an object on which we're calling the method, the message is sent to `self`.  To demonstrate this, refactor the `#full_name` method to match Figure 3—we're removing the explicit receiver from our method calls.  The method will behave just as it did before.
+Remember that `self` is the default receiver of method calls.  If we call a method without specifying an object on which we're calling the method, the message is sent to `self`.  To demonstrate this, refactor the `#full_name` method to match Figure 3—we're removing the explicit receiver from our method calls.  The method will behave just as it did before, and our tests will continue to pass.
 
-If we want to explore these methods more, we can open IRB and `load 'person.rb'`  Then we can create some instances of the class `Person` and call these methods on them.
+Let's open IRB and `load 'person.rb'`.  With the file loaded, we can create some instances of the class `Person` and call the `#return_self` and `#full_name` methods on them.  Notice how the return values of the methods differ—all because the value of `self` is different depending on which object the method is called.
 
 
 ### Release 1: When Defining a Class
