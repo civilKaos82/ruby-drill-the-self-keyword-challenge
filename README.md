@@ -47,7 +47,7 @@ end
 
 Remember that `self` is the default receiver of method calls.  If we call a method without specifying an object on which we're calling the method, the message is sent to `self`.  To demonstrate this, refactor the `#full_name` method to match Figure 3—we're removing the explicit receiver from our method calls.  The method will behave just as it did before, and our tests will continue to pass.
 
-Let's open IRB and `load 'person.rb'`.  With the file loaded, we can create some instances of the class `Person` and call the `#return_self` and `#full_name` methods on them.  Notice how the return values of the methods differ—all because the value of `self` is different depending on which object the method is called.
+Open IRB and `load 'person.rb'`.  With the file loaded, we can create some instances of the class `Person` and call the `#return_self` and `#full_name` methods on them.  Notice how the return values of the methods differ—all because the value of `self` is different depending on which object the method is called.
 
 
 ### Release 1: When Defining a Class
@@ -66,7 +66,7 @@ end
 ```
 *Figure 4*.  Defining a class method within the body of the class definition.
 
-What does this have to do with the keyword `self`?  To set up for that discussion, let's do a little refactoring.  When we define a class method, we typically do so within the body of the class definition; this keeps our code well organized.  Let's refactor our `Dog` class, so that the class method `.create_multiple` is defined within the class definition (see Figure 4).  Our tests for the `Dog` class should continue to pass.
+What does this have to do with the keyword `self`?  To set up for that discussion, we're going to do a little refactoring.  When we define a class method, we typically do so within the body of the class definition; this keeps our code well organized.  Refactor our `Dog` class so that the class method `.create_multiple` is defined within the class definition (see Figure 4).  Our tests for the `Dog` class should continue to pass.
 
 Now that we're defining our class method within the body of the class definition, we can discuss `self`.  When Ruby encounters a class definition, the code in the class definition is executed, and while it's executed the `self` keyword will point to the `Class` object being defined.
 
@@ -81,7 +81,7 @@ end
 ```
 *Figure 5*.  Defining a class method within the body of the class definition, using the keyword `self`.
 
-To demonstrate this, let's perform an additional refactor.  Rather than defining the class method `.create_multiple` explicitly on the object `Dog`, let's define it on `self` (see Figure 5).  As with our previous refactor, our tests should continue to pass.  After all, in this example, `self` is pointing to the object `Dog`.
+To demonstrate this, perform an additional refactor.  Rather than defining the class method `.create_multiple` explicitly on the object `Dog`, define it on `self` (see Figure 5).  As with our previous refactor, our tests should continue to pass.  After all, in this example, `self` is pointing to the object `Dog`.
 
 
 ### Release 2:  When Defining a Module
@@ -101,7 +101,7 @@ We define modules in the same way that we define classes—in fact, a class is a
 
 `self` is treated the same way in the body of a module definition as it is in a class definition.  `self` points to the new module being defined.  So, as we're defining a module, we can utilize `self` to add methods to the module, just as we did in adding the method `.create_multiple` to our `Dog` class in *Release 1*.
 
-Let's add some behaviors to the module object `AreaCalculator`.  Again, the behaviors we're looking for have been described in the test suite:  calculating the area of rectangles, squares, and triangles.
+Add some behaviors to the module object `AreaCalculator`.  Again, the behaviors we're looking for have been described in the test suite:  calculating the area of rectangles, squares, and triangles.
 
 
 ### Release 3: The Global Context
