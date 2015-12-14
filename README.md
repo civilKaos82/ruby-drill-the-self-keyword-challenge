@@ -30,7 +30,7 @@ In the *Releases* section we'll explore to which object `self` refers at differe
 ### Release 0: Within Method Definitions
 When we define methods, we're writing code that will be executed at a later time when the method is called.  In addition, the method executes in a new context, or scope.  While the code in the method body is executing in this new scope, `self` refers to the receiver of the method call (i.e., the method on which the object was called).
 
-We have a class `Person` with instance methods that demonstrate this.  First, there is the method `#return_self`, which simply returns the object to which `self` points when the method executes.  The test suite demonstrates that this method returns the exact same object on which the method was called.
+We have a class `Person` with instance methods that demonstrate this (see `person.rb`).  First, there is the method `#return_self`, which simply returns the object to which `self` points when the method executes.  The test suite demonstrates that this method returns the exact same object on which the method was called; run the tests for class `Person`.
 
 Second, we have the method `#full_name`, which combines and returns the person's first and last names.  We can see that the method calls the `#first_name` and `#last_name` attribute reader methods on `self`, which is the object on which the method is called.
 
@@ -53,7 +53,7 @@ Open IRB and `load 'person.rb'`.  With the file loaded, we can create some insta
 ### Release 1: When Defining a Class
 When we define a class, that class is itself an object.  Like any other object, a `Class` object is capable of having messages sent to it.  We regularly send them the message `:new`.
 
-Sometimes we want our classes to perform additional behaviors.  To accomplish this, we can define methods on a class itself.  We call these *class methods*.  We have a class object `Dog` that has a class method defined on it: the method `.create_multiple` creates multiple dogs based on an array of data.
+Sometimes we want our classes to perform additional behaviors.  To accomplish this, we can define methods on a class itself.  We call these *class methods*.  We have a class object `Dog` that has a class method defined on it: the method `.create_multiple` which creates multiple dogs based on an array of data.  See the code in file `dog.rb` and run the tests for the class `Dog`.
 
 ```ruby
 class Dog
@@ -97,9 +97,9 @@ Modules in Ruby are used in different ways.  One way to utilize a module is as a
 
 We're going to define our own module `AreaCalculator` which will calculate the areas of shapes.  Tests are written for the module's behaviors; we need to define the methods.  If our geometry is rusty, we can see how to calculate each shape's area in the tests; this release isn't about geometry, rather it's about using `self` within the body of a module definition.
 
-We define modules in the same way that we define classes—in fact, a class is a specific type of module.  Only, instead of beginning with `class`, we begin with `module`.  As with defining a class, when we define a module we're creating an object on which we can define methods (i.e., add behaviors).
+We define modules in the same way that we define classes—in fact, a class is a specific type of module.  Only, instead of beginning with the keyword `class`, we begin with `module`.  As with defining a class, when we define a module we're creating an object on which we can define methods (i.e., add behaviors).
 
-`self` is treated the same way in the body of a module definition as it is in a class definition.  `self` points to the new module being defined.  So, as we're defining a module, we can utilize `self` to add methods to the module, just as we did in adding the method `.create_multiple` to our `Dog` class in *Release 1*.
+`self` is treated the same way in the body of a module definition as it is in a class definition.  `self` points to the module being defined.  So, as we're defining a module, we can utilize `self` to add methods to the module, just as we did in adding the method `.create_multiple` to our `Dog` class in *Release 1*.
 
 Add some behaviors to the module object `AreaCalculator`.  Again, the behaviors we're looking for have been described in the test suite:  calculating the area of rectangles, squares, and triangles.
 
