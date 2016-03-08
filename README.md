@@ -105,7 +105,7 @@ Add some behaviors to the module object `AreaCalculator`.  Again, the behaviors 
 
 
 ### Release 3: The Global Context
-Take a look at the file `runner.rb`.  In the file, we define a method `#return_self` that returns the value of `self`, and we know from *Release 0* that when the method is executed `self` will reference the object on which the method is called.  After defining the method, we call the `#puts` method, passing in an interpolated string in which we call our `#return_self` method.
+Take a look at the file `runner.rb`.  In the file, we define a method `#return_self` that returns the value of `self`. We know from *Release 0* that `self` will reference the object on which the method is called.  After defining the method, we call the `#puts` method, passing in an interpolated string in which we call our `#return_self` method.
 
 When we call these methods, we don't specify a receiver, but the messages need to be sent to some object. With no explicit receiver, they'll go to the default receiver, which we know is `self`.  Which object receives these method calls?  Run the runner file to find out.
 
@@ -113,7 +113,7 @@ There is a global context in which our Ruby programs execute, and within this co
 
 
 ### Release 4: `self` Reflection
-After reading and working through *Releases 0 - 3* and working with `self`, we should have some understanding of it.  Write up an explanation of `self` in the file `self_reflection.md`.  As much as possible, put our description in our `self` in our own words, such that a non-technical person could understand.
+After reading and working through *Releases 0 - 3* and working with `self`, we should have some understanding of it.  Write up an explanation of `self` in the file `self_reflection.md`.  As much as possible, put our description of `self` in our own words, such that a non-technical person could understand.
 
 
 ## Conclusion
