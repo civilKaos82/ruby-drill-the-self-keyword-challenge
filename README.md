@@ -28,7 +28,7 @@ In the *Releases* section we'll explore to which object `self` refers at differe
 
 ## Releases
 ### Release 0: Within Method Definitions
-When we define methods, we're writing code that will be executed at a later time when the method is called.  In addition, the method executes in a new context, or scope.  While the code in the method body is executing in this new scope, `self` refers to the receiver of the method call (i.e., the method on which the object was called).
+When we define methods, we're writing code that will be executed at a later time when the method is called.  In addition, the method executes in a new context, or scope.  While the code in the method body is executing in this new scope, `self` refers to the receiver of the method call (i.e., the object on which the method was called).
 
 We have a class `Person` with instance methods that demonstrate this (see `person.rb`).  First, there is the method `#return_self`, which simply returns the object to which `self` points when the method executes.  The test suite demonstrates that this method returns the exact same object on which the method was called; run the tests for class `Person`.
 
